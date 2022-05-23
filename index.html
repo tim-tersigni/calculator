@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
-  <title>Calculator</title>
-</head>
-<body>
-  <div class="calculator-body">
-    <form class="display">
-      <input type="text" class="display-input" value="0">
-    </form>
-    <div class="button-wrapper">
-      <button type="button" class="clear-button">Clear</button>
-      <button type="button" class="negative-button">+/-</button>
-      <button type="button" class="operator-button" data-operator="divide">÷</button>      
-      <button type="button" class="num-button" data-value="7">7</button>
-      <button type="button" class="num-button" data-value="8">8</button>
-      <button type="button" class="num-button" data-value="9">9</button>
-      <button type="button" class="operator-button" data-operator="multiply">×</button>     
-      <button type="button" class="num-button" data-value="4">4</button>
-      <button type="button" class="num-button" data-value="5">5</button>
-      <button type="button" class="num-button" data-value="6">6</button>
-      <button type="button" class="operator-button" data-operator="subtract">−</button>     
-      <button type="button" class="num-button" data-value="1">1</button>
-      <button type="button" class="num-button" data-value="2">2</button>
-      <button type="button" class="num-button" data-value="3">3</button>
-      <button type="button" class="operator-button" data-operator="add">+</button>     
-      <button type="button" class="num-button" data-value="0">0</button>
-      <button type="button" class="decimal-button" data-value=".">.</button>
-      <button type="button" class="equals-button" data-operator="equals">=</button>     
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="calculator-body">
+      <form class="display">
+        <input type="text" class="display-input" value="0" />
+      </form>
+      <div class="button-wrapper">
+        <button type="button" class="clear-button">Clear</button>
+        <button type="button" class="negative-button color-button">+/-</button>
+        <button
+          type="button"
+          class="operator-button color-button"
+          data-operator="divide"
+        >
+          ÷
+        </button>
+        <button type="button" class="num-button" data-value="7">7</button>
+        <button type="button" class="num-button" data-value="8">8</button>
+        <button type="button" class="num-button" data-value="9">9</button>
+        <button
+          type="button"
+          class="operator-button color-button"
+          data-operator="multiply"
+        >
+          ×
+        </button>
+        <button type="button" class="num-button" data-value="4">4</button>
+        <button type="button" class="num-button" data-value="5">5</button>
+        <button type="button" class="num-button" data-value="6">6</button>
+        <button
+          type="button"
+          class="operator-button color-button"
+          data-operator="subtract"
+        >
+          −
+        </button>
+        <button type="button" class="num-button" data-value="1">1</button>
+        <button type="button" class="num-button" data-value="2">2</button>
+        <button type="button" class="num-button" data-value="3">3</button>
+        <button
+          type="button"
+          class="operator-button color-button"
+          data-operator="add"
+        >
+          +
+        </button>
+        <button type="button" class="num-button" data-value="0">0</button>
+        <button
+          type="button"
+          class="decimal-button color-button"
+          data-value="."
+        >
+          .
+        </button>
+        <button type="button" class="equals-button" data-operator="equals">
+          =
+        </button>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
