@@ -16,3 +16,13 @@ body {
 button {
     height: 76px;
 }
+
+.clear-button {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+.equals-button {
+    grid-column: 1 / 3;
+    grid-row: 5;
+}
