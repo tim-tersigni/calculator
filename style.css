@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    background-color: #f6f7f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.button-wrapper {
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(4, 76px);
+}
+
+button {
+    height: 76px;
+}
