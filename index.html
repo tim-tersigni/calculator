@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <script src="main.js" defer></script>
     <title>Calculator</title>
   </head>
   <body>
     <div class="calculator-body">
       <form class="display">
-        <input type="text" class="display-input" value="0" />
+        <input type="text" class="display-input"/>
       </form>
       <div class="button-wrapper">
         <button type="button" class="clear-button">Clear</button>
@@ -19,6 +20,7 @@
           type="button"
           class="operator-button color-button"
           data-operator="divide"
+          data-value="÷"
         >
           ÷
         </button>
@@ -29,6 +31,7 @@
           type="button"
           class="operator-button color-button"
           data-operator="multiply"
+          data-value="×"
         >
           ×
         </button>
@@ -39,6 +42,7 @@
           type="button"
           class="operator-button color-button"
           data-operator="subtract"
+          data-value="−"
         >
           −
         </button>
@@ -49,6 +53,7 @@
           type="button"
           class="operator-button color-button"
           data-operator="add"
+          data-value="+"
         >
           +
         </button>
