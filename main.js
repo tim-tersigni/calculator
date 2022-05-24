@@ -1,11 +1,42 @@
 let operatorState = false;
-let operand1 = 0;
+let num1 = 0;
 let operator = undefined;
 
 function main() {
+  createListeners();
+
+
+
+}
+
+function createListeners() {
   // create clear button listener
   const clearButton = document.querySelector(".clear-button");
   clearButton.addEventListener("click", clearDisplay);
+
+  // create number and operator button listeners
+  const inputButtons = document.querySelectorAll(".num-button");
+  inputButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      onNumInput(button.getAttribute("data-value"));
+    });
+  });
+}
+
+// when the user inputs a number
+function onNumInput(val) {
+  if (operatorState == false) {
+    num1.push(val);
+    displayInput(num1);
+  }
+
+  else {
+    operate(num1, operator, val);
+  }
+}
+
+function onOperatorInput(val) {
+
 }
 
 // add passed argument to display
@@ -24,13 +55,5 @@ function clearDisplay() {
 function operate(num1, operator, num2) {
   console.log("todo");
 }
-
-// create number and operator button listeners
-const inputButtons = document.querySelectorAll(".num-button, .operator-button");
-inputButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    displayInput(button.getAttribute("data-value"));
-  });
-});
 
 main();
