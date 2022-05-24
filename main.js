@@ -8,11 +8,11 @@ function main() {
 }
 
 function createListeners() {
-  // create clear button listener
+  // clear button listener
   const clearButton = document.querySelector(".clear-button");
   clearButton.addEventListener("click", clearDisplay);
 
-  // create number and operator button listeners
+  // number button listeners
   const numButtons = document.querySelectorAll(".num-button");
   numButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -20,20 +20,30 @@ function createListeners() {
     });
   });
 
+  // operator buttons listeners
   const opButtons = document.querySelectorAll(".operator-button");
   opButtons.forEach((button) => {
     button.addEventListener("click", () => {
       onOperatorInput(button.getAttribute("data-value"));
     });
   });
+
+  // equals button listener
+  const equalsButton = document.querySelector(".equals-button");
+  equalsButton.addEventListener("click", () => {
+    if (prevNum != undefined && operator != undefined) {
+      operate(prevNum, operator, curNum);
+    }
+  })
 }
 
 // call when the user inputs a number
 function onNumInput(val) {
   console.debug("onNumInput()");
   // update current number
-  if (curNum != 0) curNum = "" + curNum + val;
+  if (curNum != 0 && !operatorState) curNum = "" + curNum + val;
   else curNum = val;
+  displayInput(curNum);
 }
 
 // call when the user inputs an operator
@@ -46,10 +56,11 @@ function onOperatorInput(val) {
     operator = val;
   }
   else {
-    prevNum = operate(prevNum, operator, curNum);
-    curNum = 0;
+    operate(prevNum, operator, curNum);
+    prevNum = curNum
     operator = val;
   }
+  operatorState = true;
   displayInput(curNum);
 }
 
@@ -63,25 +74,29 @@ function displayInput(input) {
 // clear display
 function clearDisplay() {
   const display = document.querySelector(".display-input");
-  display.value = "";
-  num1 = 0;
+  display.value = 0;
+  curNum = 0;
+  prevNum = undefined;
+  operator = undefined;
 }
 
 // evaluate expression
 function operate(num1, operator, num2) {
-  alert("operate!");
-  switch(operator) {
-    case "÷":
-      return num1 / num2;
-    case "×":
-      return num1 * num2;
-    case "−":
-      return num1 - num2;
-    case "+":
-      return num1 + num2;
-    default:
-      return 0;
-  }
+  num1 = parseFloat(num1);
+  num2 = parseFloat(num2);
+  let result = 0;
+  if (operator == "+")
+    result = num1 + num2;
+  else if (operator == "−")
+    result = num1 - num2;
+  else if (operator == "×")
+    result = num1 * num2;
+  else if (operator == "÷")
+    result = num1 / num2;
+  else
+    result = undefined;
+  curNum = result;
+  displayInput(curNum);
 }
 
 main();
