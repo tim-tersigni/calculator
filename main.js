@@ -1,4 +1,4 @@
-let operatorState = false;
+let operatorState = true;
 let curNum = 0;
 let prevNum = undefined;
 let operator = undefined;
@@ -34,16 +34,18 @@ function createListeners() {
     if (prevNum != undefined && operator != undefined) {
       operate(prevNum, operator, curNum);
     }
-  })
+  });
 }
 
 // call when the user inputs a number
 function onNumInput(val) {
   console.debug("onNumInput()");
   // update current number
-  if (curNum != 0 && !operatorState) curNum = "" + curNum + val;
+  if (!operatorState) curNum = "" + curNum + val;
   else curNum = val;
   displayInput(curNum);
+
+  operatorState = false;
 }
 
 // call when the user inputs an operator
@@ -96,7 +98,10 @@ function operate(num1, operator, num2) {
   else
     result = undefined;
   curNum = result;
+  prevNum = undefined;
+  operator = undefined;
   displayInput(curNum);
+  operatorState = true;
 }
 
 main();
