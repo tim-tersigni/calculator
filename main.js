@@ -101,6 +101,10 @@ function onKeyPress(keyCode, ev) {
       break;
     case "Backspace":
       clearDisplay();
+      break;
+    case "Delete":
+      deleteDigit();
+      break;
   }
 }
 
