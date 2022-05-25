@@ -67,8 +67,10 @@ button {
 
 .clear-button {
   background-color: #dd5567;
-  grid-column: 1 / 3;
-  grid-row: 1;
+}
+
+.delete-button {
+  background-color: #dd5567
 }
 
 .equals-button {

@@ -1,4 +1,4 @@
-let operatorState = true;
+let overwrite = true;
 let curNum = 0;
 let prevNum = undefined;
 let operator = undefined;
@@ -11,6 +11,10 @@ function createListeners() {
   // clear button listener
   const clearButton = document.querySelector(".clear-button");
   clearButton.addEventListener("click", clearDisplay);
+
+  // delete button listener
+  const deleteButton = document.querySelector(".delete-button");
+  deleteButton.addEventListener("click", deleteDigit);
 
   // number button listeners
   const numButtons = document.querySelectorAll(".num-button");
@@ -108,7 +112,7 @@ function onNumInput(val) {
   }
 
   // update current number
-  if (!operatorState) {
+  if (!overwrite) {
     // prevent -0 getting appended to
     if (curNum === "-0") {
       curNum = "-";
@@ -118,7 +122,7 @@ function onNumInput(val) {
   else curNum = val;
   displayInput(curNum);
 
-  operatorState = false;
+  overwrite = false;
 }
 
 // call when the user inputs an operator
@@ -134,7 +138,7 @@ function onOperatorInput(val) {
     prevNum = curNum
     operator = val;
   }
-  operatorState = true;
+  overwrite = true;
   displayInput(curNum);
 }
 
@@ -146,7 +150,7 @@ function onNegativePress() {
   else {
     curNum = curNum.slice(1)
   }
-  operatorState = false;
+  overwrite = false;
   displayInput(curNum);
 }
 
@@ -164,7 +168,17 @@ function clearDisplay() {
   curNum = 0;
   prevNum = undefined;
   operator = undefined;
-  operatorState = true;
+  overwrite = true;
+}
+
+// delete last digit
+function deleteDigit() {
+  if (curNum.length > 1) curNum = (""+curNum).slice(0, curNum.length - 1);
+  else {
+    curNum = 0;
+    overwrite = true;
+  }
+  displayInput(curNum);
 }
 
 // evaluate expression
@@ -186,7 +200,7 @@ function operate(num1, operator, num2) {
   prevNum = undefined;
   operator = undefined;
   displayInput(curNum);
-  operatorState = true;
+  overwrite = true;
 }
 
 main();
