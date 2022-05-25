@@ -35,13 +35,25 @@ function createListeners() {
       operate(prevNum, operator, curNum);
     }
   });
+
+  // negative button listener
+  const negativeButton = document.querySelector(".negative-button");
+  negativeButton.addEventListener("click", () => {
+    onNegativePress();
+  })
 }
 
 // call when the user inputs a number
 function onNumInput(val) {
   console.debug("onNumInput()");
   // update current number
-  if (!operatorState) curNum = "" + curNum + val;
+  if (!operatorState) {
+    // prevent -0 getting appended to
+    if (curNum == "-0") {
+      curNum = "-";
+    }
+    curNum = "" + curNum + val;
+  }
   else curNum = val;
   displayInput(curNum);
 
@@ -63,6 +75,18 @@ function onOperatorInput(val) {
     operator = val;
   }
   operatorState = true;
+  displayInput(curNum);
+}
+
+// on negative / positive press
+function onNegativePress() {
+  if ((""+curNum).split("")[0] != "-") {
+    curNum = "-" + curNum;
+  }
+  else {
+    curNum = curNum.slice(1)
+  }
+  operatorState = false;
   displayInput(curNum);
 }
 
