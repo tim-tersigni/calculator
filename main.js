@@ -41,15 +41,76 @@ function createListeners() {
   negativeButton.addEventListener("click", () => {
     onNegativePress();
   })
+
+  //Key listener
+  document.addEventListener("keydown", (ev) => {
+    onKeyPress(ev.code, ev)
+  });
+}
+
+function onKeyPress(keyCode, ev) {
+  switch(keyCode) {
+    case "Digit0":
+      onNumInput(0);
+      break;
+    case "Digit1":
+      onNumInput(1);
+      break;
+    case "Digit2":
+      onNumInput(2);
+      break;
+    case "Digit3":
+        onNumInput(3);
+      break;
+    case "Digit4":
+      onNumInput(4);
+      break;
+    case "Digit5":
+      onNumInput(5);
+      break;
+    case "Digit6":
+      onNumInput(6);
+      break;
+    case "Digit7":
+      onNumInput(7);
+      break;
+    case "Digit8":
+      if (ev.shiftKey) onOperatorInput("×");
+      else onNumInput(8);
+      break;
+    case "Digit9":
+      onNumInput(9);
+      break;
+    case "Equal":
+      if (ev.shiftKey) onOperatorInput("+");
+      else operate(prevNum, operator, curNum);
+      break;
+    case "Minus":
+      if (ev.shiftKey) onNegativePress();
+      else onOperatorInput("−");
+      break;
+    case "Slash":
+      onOperatorInput("÷");
+      break;
+    case "Enter":
+      operate(prevNum, operator, curNum);
+      break;
+    case "Backspace":
+      clearDisplay();
+  }
 }
 
 // call when the user inputs a number
 function onNumInput(val) {
-  console.debug("onNumInput()");
+  // for decimal input
+  if (val == ".") {
+    if ((""+curNum).includes(val)) return;
+  }
+
   // update current number
   if (!operatorState) {
     // prevent -0 getting appended to
-    if (curNum == "-0") {
+    if (curNum === "-0") {
       curNum = "-";
     }
     curNum = "" + curNum + val;
@@ -62,7 +123,6 @@ function onNumInput(val) {
 
 // call when the user inputs an operator
 function onOperatorInput(val) {
-  console.debug("onOperatorInput()");
   // no previous expression
   if (prevNum == undefined) {
     prevNum = curNum;
@@ -104,6 +164,7 @@ function clearDisplay() {
   curNum = 0;
   prevNum = undefined;
   operator = undefined;
+  operatorState = true;
 }
 
 // evaluate expression
